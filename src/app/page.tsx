@@ -1,7 +1,14 @@
 export default function Home() {
   return (
     <main>
-      Hello world!
+      <nav className="flex flex-row justify-between border-black">
+        <div>
+          hey
+        </div>
+        <div>
+          What
+        </div>
+      </nav>
     </main>
   )
 }
