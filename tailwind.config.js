@@ -6,4 +6,10 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx}',
   ],
   plugins: [],
+  theme: {
+    colors: {
+      'background': '#F5F3EC',
+      'light-green': '#B6E3C5'
+    }
+  }
 }
