@@ -16,6 +16,8 @@ export const theme = {
   },
   colors: {
     'background': '#F5F3EC',
-    'light-green': '#B6E3C5'
+    'light-green': '#B6E3C5',
+    'white': '#FFFFFF',
+    'black': '#000000'
   }
 }
