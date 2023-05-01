@@ -1,15 +1,18 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <main>
-      <div className="bg-light-green px-5 pt-7 pb-5">
+      <div className="bg-light-purple px-5 pt-7 pb-5">
         <h1 className="text-5xl font-mono mb-5">
           Cohousing made simple
         </h1>
-        <button className="font-sans bg-background py-2 px-4 border-2 rounded-full">
-          Find cohouse
-        </button>
+        <Link href="/listings">
+          <button className="font-sans bg-background py-2 px-4 border-2 rounded-full">
+            Find cohouse
+          </button>
+        </Link>
       </div>
       <div className="px-5 font-mono py-5">
         <h2 className="font-mono text-2xl mb-2">

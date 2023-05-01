@@ -11,7 +11,7 @@ export default function Navbar() {
     }
 
     return (
-        <nav className={`sticky top-0 w-full ${showMenu ? 'bg-black' : 'bg-light-green'}`}>
+        <nav className={`z-50 sticky top-0 w-full ${showMenu ? 'bg-black' : 'bg-light-purple'}`}>
             <div className={`flex flex-row justify-between align-middle px-5 py-3 border-b-2 ${showMenu ? 'border-white' : 'border-black'}`}>
                 {!showMenu && <Image src="/logo.png" alt="comatch-logo" width={62} height={48}/>}
                 {showMenu && <Image src="/logo-white.png" alt="comatch-logo" width={62} height={48}/>}

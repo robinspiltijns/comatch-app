@@ -10,14 +10,14 @@ const ibm_plex_mono = IBM_Plex_Mono({
 
 const ibm_plex_sans = IBM_Plex_Sans({
   subsets:["latin"], 
-  weight:"400",
+  weight:["400", "600"],
   variable:'--font-ibm-sans'
 })
 
 export const metadata = {
   title: 'Comatch',
   description: 'Cohousing made simple',
-  themeColor: "#B6E3C5"
+  themeColor: "#C4B6E3"
 }
 
 export default function RootLayout({
