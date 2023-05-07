@@ -5,29 +5,32 @@ function Listings() {
     return (
         <div className="p-5 flex flex-col gap-5">
             <ListingSummary
+                id="ULID1"
                 thumbnail="/house.jpg"
                 title="Cute boi group zoekt nieuwe cohouser"
                 moveInDate={new Date("2023-04-29")}
                 domicile={true}
-                cohousees={5}
+                housemates={5}
                 ageRange={[20,25]}
                 price={500}
             />
             <ListingSummary
+                id="ULID2"
                 thumbnail="/house2.png"
                 title="Hype gang looking for gangster in Heverlee"
                 moveInDate={new Date("2023-09-01")}
                 domicile={false}
-                cohousees={2}
+                housemates={2}
                 ageRange={[30,35]}
                 price={450}
             />
             <ListingSummary
+                id="ULID3"
                 thumbnail="/house.jpg"
                 title="Rustige jongeren zoeken daddy"
                 moveInDate={new Date("2023-12-01")}
                 domicile={true}
-                cohousees={3}
+                housemates={3}
                 ageRange={[20,23]}
                 price={543}
             />
