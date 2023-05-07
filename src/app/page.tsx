@@ -8,11 +8,15 @@ export default function Home() {
         <h1 className="text-5xl font-mono mb-5">
           Cohousing made simple
         </h1>
-        <Link href="/listings">
-          <button className="font-sans bg-background py-2 px-4 border-2 rounded-full">
-            Find cohouse
-          </button>
+        <div className="w-fit">
+          <Link href="/listings">
+            <div className="group animate-shrink font-sans bg-dark-purple pr-14 border-2 rounded-full pointer-events-none transition-all hover:pr-0">
+              <div className="peer/draft font-sans bg-background py-2 px-4 border-2 rounded-full -m-[2px] pointer-events-auto transition-all hover:pr-8">
+                Find cohousing
+              </div>
+            </div>
         </Link>
+        </div>
       </div>
       <div className="px-5 font-mono py-5">
         <h2 className="font-mono text-2xl mb-2">

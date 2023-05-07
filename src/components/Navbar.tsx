@@ -13,7 +13,7 @@ export default function Navbar() {
     }
 
     return (
-        <nav className={`z-50 sticky top-0 w-full ${showMenu ? 'bg-black' : 'bg-light-purple'}`}>
+        <nav className={`z-50 sticky top-0 w-full ${showMenu ? 'bg-dark-purple' : 'bg-light-purple'}`}>
             <Link href="/">
                 <div className={`flex flex-row justify-between align-middle px-5 py-3 border-b-2 ${showMenu ? 'border-white' : 'border-black'}`}>
                     {!showMenu && <Image priority src="/logo.png" alt="comatch-logo" width={62} height={48}/>}
@@ -27,7 +27,7 @@ export default function Navbar() {
                 </div>
             </Link>
             {showMenu && (
-                <div className={`absolute w-full bg-black`}>
+                <div className={`absolute w-full bg-dark-purple`}>
                     <div className="font-mono text-white px-5 py-3 border-b-2">
                         Login
                     </div>

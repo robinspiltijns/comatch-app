@@ -17,6 +17,7 @@ export const theme = {
   colors: {
     'background': '#F5F3EC',
     'light-purple': '#C4B6E3',
+    'dark-purple': '#56407B',
     'white': '#FFFFFF',
     'black': '#000000'
   }
