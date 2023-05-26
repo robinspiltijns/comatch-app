@@ -1,7 +1,14 @@
 import ListingSummary from "@/components/ListingSummary"
+import { db } from "@/lib/firebase";
+import { collection, getDocs } from "firebase/firestore"; 
 import Image from "next/image"
 
-function Listings() {
+async function Listings() {
+    const listings = (await getDocs(collection(db, "listings"))).docs.map(doc => doc.data());  
+    console.log(listings);
+      
+    
+
     return (
         <div className="p-5 flex flex-col gap-5">
             <ListingSummary
