@@ -1,10 +1,9 @@
-export const revalidate = 60;
-
 import ListingSummary from "@/components/ListingSummary"
 import { db } from "@/lib/firebase";
 import { collection, getDocs } from "firebase/firestore"; 
 
 async function Listings() {
+    // TODO: Decide on ISR vs dynamic data fetching.
     const listings = (await getDocs(collection(db, "listings"))).docs.map(doc => doc.data());  
     console.log(listings);
 
