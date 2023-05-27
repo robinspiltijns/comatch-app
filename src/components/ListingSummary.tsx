@@ -1,16 +1,8 @@
+import { ListingSummaryType } from "@/lib/schema";
 import Image from "next/image";
 import Link from "next/link";
 
-function ListingSummary(props: {
-    id: string
-    thumbnail: string // more strict type?
-    title: string
-    moveInDate: Date,
-    domicile: boolean,
-    housemates: number,
-    ageRange: [number, number]
-    price: number
-}) {
+function ListingSummary(props: ListingSummaryType) {
     return(
         <Link href={`/listing/${props.id}`}>
             <div className=" bg-white border-2 rounded-xl p-4">

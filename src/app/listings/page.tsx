@@ -1,11 +1,26 @@
 import ListingSummary from "@/components/ListingSummary"
 import { db } from "@/lib/firebase";
+import { ListingSummarySchema, ListingSummaryType } from "@/lib/schema";
 import { collection, getDocs } from "firebase/firestore"; 
 
+async function getListingSummaries(): Promise<ListingSummaryType[]> {
+    const parsedDocs = (await getDocs(collection(db, "listings"))).docs
+        .map(doc => ListingSummarySchema.safeParse(doc.data()))
+
+    const listingSummaries: ListingSummaryType[] = []
+    for (let parsedDoc of parsedDocs) {
+        if (parsedDoc.success) {
+            listingSummaries.push(parsedDoc.data)
+        } else {
+            console.error(`Failed to parse document: ${JSON.stringify(parsedDoc.error)}`);
+        }
+    }
+    return listingSummaries
+}
+
 async function Listings() {
-    // TODO: Decide on ISR vs dynamic data fetching.
-    const listings = (await getDocs(collection(db, "listings"))).docs.map(doc => doc.data());  
-    console.log(listings);
+    // TODO: Decide on ISR vs dynamic data fetching
+    const listings = await getListingSummaries() 
 
     return (
         <div className="p-5 flex flex-col gap-5">
