@@ -38,6 +38,13 @@ export default function Home() {
         <p className="font-sans">
           Comatch does some very cool stuff that you would never believe. We are committed to doing all sorts of stuff for cohousers, it’s insane how much stuff we want to do tbh.
         </p>
+        <Link href="/post-listing">
+          <div className="flex flex-row justify-center my-5">
+            <div className="w-fit font-sans bg-background py-2 px-4 border-2 rounded-full -m-[2px] pointer-events-auto transition-all hover:bg-black hover:text-white">
+              Post cohousing
+            </div>
+          </div>
+        </Link>
       </div>
     </main>
   );

@@ -3,9 +3,6 @@
 import Image from "next/image";
 import { useState } from 'react';
 import Link from "next/link";
-import { auth, googleAuthProvider } from "@/lib/firebase";
-import { signInWithPopup } from "firebase/auth";
-
 
 export default function Navbar() {
     const [showMenu, setShowMenu] = useState(false);
@@ -13,8 +10,6 @@ export default function Navbar() {
     const toggleMenu = () => {
         setShowMenu(!showMenu);
     }
-
-    const handleLogin = () => signInWithPopup(auth, googleAuthProvider);
 
     return (
         <nav className={`z-50 sticky top-0 w-full ${showMenu ? 'bg-black' : 'bg-light-purple'}`}>
@@ -32,7 +27,7 @@ export default function Navbar() {
                 </div>
             {showMenu && (
                 <div className={`absolute w-full bg-black`}>
-                    <div onClick={handleLogin} className="font-mono text-white px-5 py-3 border-b-2">
+                    <div className="font-mono text-white px-5 py-3">
                         Login
                     </div>
                 </div>
