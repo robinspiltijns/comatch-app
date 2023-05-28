@@ -6,11 +6,12 @@ import Image from "next/image"
 
 const handleLogin = () => signInWithPopup(auth, googleAuthProvider);
 
-const openInBrowser = () => {
-    window.open(window.location.href, '_system');
-  }
-
 function GoogleSignIn() {
+
+    const openInBrowser = () => {
+        window.open(window.location.href, '_system');
+      }
+      
     return (
         <div>
             <button onClick={handleLogin} className="bg-white border-2 rounded-xl w-full py-3 px-4 font-sans">
