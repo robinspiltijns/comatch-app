@@ -1,6 +1,6 @@
 'use client'
 
-import GoogleSignIn from "@/components/GoogleSignIn"
+import SignInOrSignUp from "@/components/SignInOrSignUp"
 import { auth } from "@/lib/firebase"
 import { useState } from "react"
 
@@ -18,7 +18,7 @@ export default function PostListing() {
                 Place listing
             </h2>
             <div className="p-5">
-                {authState == null && (<GoogleSignIn/>)}
+                {authState == null && (<SignInOrSignUp/>)}
                 {authState != null && (<div>To add flow for posting cohouse.</div>)}
             </div>
         </div>
