@@ -4,6 +4,7 @@ import { auth, googleAuthProvider } from "@/lib/firebase";
 import { signInWithPopup } from "firebase/auth";
 import Image from "next/image"
 import { useEffect, useState } from "react";
+import LoadingSpinner from "./LoadingSpinner";
 
 type Loading = {
     type: "LOADING"
@@ -33,9 +34,12 @@ function SignInOrSignUp() {
         setLoadingState({type: "LOADED"})
     })  
 
+
     switch(loadingState.type) {
         case "LOADING": return (
-            <div>Loading</div>
+            <div className="flex flex-row justify-center">
+                <LoadingSpinner/>
+            </div>
         )
         case "LOADED": return (
             <div>
