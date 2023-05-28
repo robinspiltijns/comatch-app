@@ -30,7 +30,7 @@ function SignInOrSignUp() {
     // TODO: Make this based on auth context.
     auth.onAuthStateChanged(_ => {
         console.log("SetState");
-        setLoadingState({type: "LOADED",})
+        setLoadingState({type: "LOADED"})
     })  
 
     switch(loadingState.type) {
@@ -47,12 +47,11 @@ function SignInOrSignUp() {
                             Continue with google
                         </div>
                     </div>
-                    {window.navigator.userAgent}
                 </button>
                 )}
                 {!supportedUserAgent && (
-                    <div>
-                        Not supported
+                    <div className="font-sans">
+                        This browser is not supported. Please open this page in your default browser.
                     </div>
                 )}
             </div>
