@@ -1,10 +1,10 @@
 'use client'
 
 import { auth, googleAuthProvider } from "@/lib/firebase";
-import { signInWithPopup, signInWithRedirect } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import Image from "next/image"
 
-const handleLogin = () => signInWithRedirect(auth, googleAuthProvider);
+const handleLogin = () => signInWithPopup(auth, googleAuthProvider);
 
 function GoogleSignIn() {
     return (
