@@ -6,11 +6,7 @@ import Image from "next/image"
 
 const handleLogin = () => signInWithPopup(auth, googleAuthProvider);
 
-function GoogleSignIn() {
-
-    const openInBrowser = () => {
-        window.open(window.location.href, '_system');
-      }
+function SignInOrSignUp() {
       
     return (
         <div>
@@ -23,11 +19,8 @@ function GoogleSignIn() {
                 </div>
                 {window.navigator.userAgent}
             </button>
-            <button onClick={openInBrowser}>
-                Open in browser
-            </button>
         </div>
     )
 }
 
-export default GoogleSignIn
+export default SignInOrSignUp
