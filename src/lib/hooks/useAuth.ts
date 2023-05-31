@@ -1,8 +1,23 @@
-import { useState, useEffect } from 'react';
-import { auth } from '../firebase';
 import { User } from 'firebase/auth';
+import { useEffect, useState } from 'react';
+import { auth } from '../firebase';
 
-export function useAuth() {
+type AuthLoading = {
+    type: "LOADING"
+}
+
+type Unauthenticated = {
+    type: "UNAUTHENTICATED"
+}
+
+type Authenticated = {
+    type: "AUTHENTICATED"
+    user: User
+}
+
+type AuthStatus = AuthLoading | Unauthenticated | Authenticated
+
+export function useAuth(): AuthStatus {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -17,5 +32,9 @@ export function useAuth() {
     return () => unsubscribe();
   }, []);
 
-  return [user, loading];
+  if (loading) {
+    return { type: "LOADING"}
+  } else {
+    return user == null ? { type: "UNAUTHENTICATED" } : { type: "AUTHENTICATED", user: user}
+  }
 }
