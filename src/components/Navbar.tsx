@@ -1,10 +1,12 @@
 'use client'
 
 import Image from "next/image";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Link from "next/link";
+import { AuthContext } from "@/lib/AuthProvider";
 
 export default function Navbar() {
+    const authState = useContext(AuthContext)
     const [showMenu, setShowMenu] = useState(false);
 
     const toggleMenu = () => {
@@ -28,7 +30,7 @@ export default function Navbar() {
             {showMenu && (
                 <div className={`absolute w-full bg-black`}>
                     <div className="font-mono text-white px-5 py-3">
-                        Login
+                        {authState.type == "AUTHENTICATED" ? "Log out" : "Log in"}
                     </div>
                 </div>
             )}
