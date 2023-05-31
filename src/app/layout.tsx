@@ -1,6 +1,7 @@
 import './globals.css'
 import Navbar from "../components/Navbar";
 import {IBM_Plex_Mono, IBM_Plex_Sans} from "next/font/google"
+import { AuthProvider } from '@/lib/AuthProvider';
 
 const ibm_plex_mono = IBM_Plex_Mono({
   subsets:["latin"], 
@@ -28,8 +29,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-background">
       <body className={`${ibm_plex_mono.variable} ${ibm_plex_sans.variable} bg-background`}>
-        <Navbar />
-        {children}
+        <AuthProvider>
+          <Navbar />
+            {children}
+          </AuthProvider>
       </body>
     </html>
   )

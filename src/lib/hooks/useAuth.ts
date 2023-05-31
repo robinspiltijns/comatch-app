@@ -1,3 +1,5 @@
+'use client'
+
 import { User } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { auth } from '../firebase';
@@ -15,7 +17,7 @@ type Authenticated = {
     user: User
 }
 
-type AuthStatus = AuthLoading | Unauthenticated | Authenticated
+export type AuthStatus = AuthLoading | Unauthenticated | Authenticated
 
 export function useAuth(): AuthStatus {
   const [user, setUser] = useState<User | null>(null);

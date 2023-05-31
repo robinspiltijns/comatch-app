@@ -2,10 +2,11 @@
 
 import LoadingSpinner from "@/components/LoadingSpinner"
 import SignInOrSignUp from "@/components/SignInOrSignUp"
-import { useAuth } from "@/lib/hooks/useAuth"
+import { AuthContext } from "@/lib/AuthProvider"
+import { useContext } from "react"
 
 export default function PostListing() {
-    const authState = useAuth()
+    const authState = useContext(AuthContext)
 
     let body: JSX.Element;
 
