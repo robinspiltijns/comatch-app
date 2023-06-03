@@ -60,6 +60,11 @@ export default function Navbar() {
                             </Link>
                         </div>
                     )}
+                    <Link href="/post-listing">
+                        <div className="font-mono text-white px-5 py-3 border-t-2 border-white">
+                            Post cohousing
+                        </div>
+                    </Link>
                 </div>
             )}
         </nav>
