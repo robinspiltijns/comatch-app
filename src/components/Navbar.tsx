@@ -27,8 +27,8 @@ export default function Navbar() {
 
     return (
         <nav className={`z-50 sticky top-0 w-full ${showMenu ? 'bg-black' : 'bg-light-purple'}`}>
-                <div className={`flex flex-row justify-between align-middle px-5 py-3 border-b-2 ${showMenu ? 'border-white' : 'border-black'}`}>
-                    <Link href="/">
+            <div className={`flex flex-row justify-between align-middle px-5 py-3 border-b-2 ${showMenu ? 'border-white' : 'border-black'}`}>
+                <Link href="/">
                         {!showMenu && <Image priority src="/logo.png" alt="comatch-logo" width={62} height={48}/>}
                         {showMenu && <Image priority src="/logo-white.png" alt="comatch-logo" width={62} height={48}/>}
                     </Link>
