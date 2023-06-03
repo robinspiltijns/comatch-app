@@ -1,11 +1,11 @@
 'use client'
 
 import { auth, googleAuthProvider } from "@/lib/firebase";
-import { signInWithRedirect } from "firebase/auth";
+import { signInWithPopup, signInWithRedirect } from "firebase/auth";
 import Image from "next/image"
 import { useEffect, useState } from "react";
 
-const handleLogin = () => signInWithRedirect(auth, googleAuthProvider);
+const handleLogin = () => signInWithPopup(auth, googleAuthProvider);
 
 function Authenticate(): JSX.Element {
 
