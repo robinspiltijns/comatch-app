@@ -1,16 +1,28 @@
 'use client'
 
 import Image from "next/image";
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Link from "next/link";
 import { AuthContext } from "@/lib/AuthProvider";
+import { usePathname } from 'next/navigation';
+import { auth } from "@/lib/firebase";
 
 export default function Navbar() {
     const authState = useContext(AuthContext)
-    const [showMenu, setShowMenu] = useState(false);
+    const [showMenu, setShowMenu] = useState(false)
+    const pathName = usePathname()
+
+    useEffect(() => {
+        setShowMenu(false)
+    }, [pathName])
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
+    }
+
+    const handleLogout = () => {
+        setShowMenu(false)
+        auth.signOut()
     }
 
     return (
@@ -29,9 +41,25 @@ export default function Navbar() {
                 </div>
             {showMenu && (
                 <div className={`absolute w-full bg-black`}>
-                    <div className="font-mono text-white px-5 py-3">
-                        {authState.type == "AUTHENTICATED" ? "Log out" : "Log in"}
-                    </div>
+                    {authState.type == "AUTHENTICATED" && (
+                        <div onClick={handleLogout} className="cursor-pointer font-mono text-white px-5 py-3">
+                            Log out
+                        </div>
+                    )}
+                    {authState.type != "AUTHENTICATED" && (
+                        <div>
+                            <Link href="/log-in-or-sign-up">
+                                <div className="font-mono text-white px-5 py-3 border-b-2 border-white">
+                                    Log in
+                                </div>
+                            </Link>
+                            <Link href="/log-in-or-sign-up">
+                                <div className="font-mono text-white px-5 py-3">
+                                    Register
+                                </div>
+                            </Link>
+                        </div>
+                    )}
                 </div>
             )}
         </nav>

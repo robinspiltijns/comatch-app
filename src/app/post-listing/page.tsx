@@ -1,7 +1,7 @@
 'use client'
 
 import LoadingSpinner from "@/components/LoadingSpinner"
-import SignInOrSignUp from "@/components/SignInOrSignUp"
+import Authenticate from "@/components/Authenticate"
 import { AuthContext } from "@/lib/AuthProvider"
 import { useContext } from "react"
 
@@ -19,7 +19,7 @@ export default function PostListing() {
             );
             break;
         case "UNAUTHENTICATED":
-            body = <SignInOrSignUp/>
+            body = <Authenticate/>
             break;
         case "AUTHENTICATED": 
             body = <div>To add flow for posting cohouse.</div>

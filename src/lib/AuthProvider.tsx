@@ -25,6 +25,7 @@ interface AuthProviderProps {
     children: ReactNode;
 }
 
+// Not exported because other components should use context to obtain auth state.
 function useAuth(): AuthStatus {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);

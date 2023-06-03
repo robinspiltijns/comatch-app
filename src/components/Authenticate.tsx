@@ -1,13 +1,13 @@
 'use client'
 
 import { auth, googleAuthProvider } from "@/lib/firebase";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithRedirect } from "firebase/auth";
 import Image from "next/image"
 import { useEffect, useState } from "react";
 
-const handleLogin = () => signInWithPopup(auth, googleAuthProvider);
+const handleLogin = () => signInWithRedirect(auth, googleAuthProvider);
 
-function SignInOrSignUp(): JSX.Element {
+function Authenticate(): JSX.Element {
 
     useEffect(() => {
         if (window.navigator.userAgent.includes('Messenger')) 
@@ -37,4 +37,4 @@ function SignInOrSignUp(): JSX.Element {
     )
 }
 
-export default SignInOrSignUp
+export default Authenticate
