@@ -8,8 +8,8 @@ export const content = [
 ];
 export const plugins = [];
 export const theme = {
-  extend: {
-    fontFamily: {
+  fontFamily: {
+    extend: {
       mono: ["var(--font-ibm-mono)", ...fontFamily.mono],
       sans: ["var(--font-ibm-sans)", ...fontFamily.sans],
     },

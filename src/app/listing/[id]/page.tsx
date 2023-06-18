@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { LuFlower2 } from "react-icons/lu";
 
 export default function Listing({ params }: { params: { id: string } }) {
   return (
@@ -12,32 +13,29 @@ export default function Listing({ params }: { params: { id: string } }) {
         />
       </div>
       <div className="px-5 py-4 border-b-2 border-dotted">
-        <h1 className="font-sans font-semibold text-2xl mb-2">
+        <h1 className="font-semibold text-2xl mb-2">
           Cute boi cohousing in Kessel-lo
         </h1>
-        <div className="font-sans italic">
-          Désiré Mellaertsstraat, Kessel-lo
-        </div>
+        <div className="italic">Désiré Mellaertsstraat, Kessel-lo</div>
       </div>
       <div className="px-5 py-4">
         <h2 className="font-mono text-2xl mb-2">Description</h2>
-        <p className="font-sans">
+        <p>
           Our cute boi cohousing is looking for a new, sociable bad boi
           housemate. We are a very spicy group of individuals who love both
           chilling and going out for some funzies.
         </p>
       </div>
       <div className=" bg-white px-5 py-4">
-        <h2 className="font-mono text-2xl mb-2">About us</h2>
-        <p className="font-sans">
-          We love doing some tv watching, game playing or doing a little dance.
-          Lisa is an astronaut, Ben is a consultant and Mary is a Navy Seal. We
-          do love us some good food as well.
-        </p>
+        <h2 className="font-mono text-2xl mb-2">The house</h2>
+        <div>
+          <LuFlower2 size={24} />
+          <div>Garden</div>
+        </div>
       </div>
       <div className=" bg-dark-purple px-5 py-4">
         <h2 className="font-mono text-2xl mb-2 text-white">About you</h2>
-        <p className="font-sans text-white">
+        <p className="text-white">
           We love doing some tv watching, game playing or doing a little dance.
           Lisa is an astronaut, Ben is a consultant and Mary is a Navy Seal. We
           do love us some good food as well.
@@ -47,9 +45,9 @@ export default function Listing({ params }: { params: { id: string } }) {
         <div className="flex flex-row items-center justify-between px-5 py-4">
           <div>
             <div className="font-mono mb-1">500/month</div>
-            <div className="font-sans italic">Starting 03/09/2023</div>
+            <div className="italic">Starting 03/09/2023</div>
           </div>
-          <div className="font-sans h-fit bg-light-purple border-2 rounded-full py-2 px-4">
+          <div className="h-fit bg-light-purple border-2 rounded-full py-2 px-4">
             reach out
           </div>
         </div>

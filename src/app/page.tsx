@@ -8,8 +8,8 @@ export default function Home() {
         <h1 className="text-5xl font-mono mb-5">Cohousing made simple</h1>
         <div className="w-fit">
           <Link href="/listings">
-            <div className="group animate-shrink font-sans bg-dark-purple pr-14 border-2 rounded-full pointer-events-none transition-all hover:pr-0">
-              <div className="peer/draft font-sans bg-background py-2 px-4 border-2 rounded-full -m-[2px] pointer-events-auto transition-all hover:pr-8">
+            <div className="group animate-shrink bg-dark-purple pr-14 border-2 rounded-full pointer-events-none transition-all hover:pr-0">
+              <div className="peer/draft bg-background py-2 px-4 border-2 rounded-full -m-[2px] pointer-events-auto transition-all hover:pr-8">
                 Find cohousing
               </div>
             </div>
@@ -18,7 +18,7 @@ export default function Home() {
       </div>
       <div className="px-5 font-mono py-5">
         <h2 className="font-mono text-2xl mb-2">For cohousers</h2>
-        <p className="font-sans">
+        <p>
           Comatch does some very cool stuff that you would never believe. We are
           committed to doing all sorts of stuff for cohousers, it’s insane how
           much stuff we want to do tbh.
@@ -36,14 +36,14 @@ export default function Home() {
       </div>
       <div className="px-5 font-mono py-5">
         <h2 className="font-mono text-2xl mb-2">For house owners</h2>
-        <p className="font-sans">
+        <p>
           Comatch does some very cool stuff that you would never believe. We are
           committed to doing all sorts of stuff for cohousers, it’s insane how
           much stuff we want to do tbh.
         </p>
         <Link href="/post-listing">
           <div className="flex flex-row justify-center my-5">
-            <div className="w-fit font-sans bg-background py-2 px-4 border-2 rounded-full -m-[2px] pointer-events-auto transition-all hover:bg-black hover:text-white">
+            <div className="w-fit bg-background py-2 px-4 border-2 rounded-full -m-[2px] pointer-events-auto transition-all hover:bg-black hover:text-white">
               Post cohousing
             </div>
           </div>
