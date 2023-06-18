@@ -9,14 +9,14 @@ export default function Home() {
         <div className="w-fit">
           <Link href="/listings">
             <div className="group animate-shrink bg-dark-purple pr-14 border-2 rounded-full pointer-events-none transition-all hover:pr-0">
-              <div className="peer/draft bg-background py-2 px-4 border-2 rounded-full -m-[2px] pointer-events-auto transition-all hover:pr-8">
+              <div className="font-sans peer/draft bg-background py-2 px-4 border-2 rounded-full -m-[2px] pointer-events-auto transition-all hover:pr-8">
                 Find cohousing
               </div>
             </div>
           </Link>
         </div>
       </div>
-      <div className="px-5 font-mono py-5">
+      <div className="px-5 py-5">
         <h2 className="font-mono text-2xl mb-2">For cohousers</h2>
         <p>
           Comatch does some very cool stuff that you would never believe. We are
@@ -34,7 +34,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="px-5 font-mono py-5">
+      <div className="px-5 py-5">
         <h2 className="font-mono text-2xl mb-2">For house owners</h2>
         <p>
           Comatch does some very cool stuff that you would never believe. We are
