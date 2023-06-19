@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { LuFlower2 } from "react-icons/lu";
+import { TbWashDryDip } from "react-icons/tb";
 
 export default function Listing({ params }: { params: { id: string } }) {
   return (
@@ -27,10 +28,15 @@ export default function Listing({ params }: { params: { id: string } }) {
         </p>
       </div>
       <div className=" bg-white px-5 py-4">
-        <h2 className="font-mono text-2xl mb-2">The house</h2>
-        <div>
+        <h2 className="font-mono text-2xl mb-4">The house</h2>
+        <h3 className="font-bold mb-2">Your room</h3>
+        <div className="flex space-x-2 mb-3">
           <LuFlower2 size={24} />
           <div>Garden</div>
+        </div>
+        <div className="flex space-x-2">
+          <TbWashDryDip size={24} />
+          <div>Dishwasher</div>
         </div>
       </div>
       <div className=" bg-dark-purple px-5 py-4">
