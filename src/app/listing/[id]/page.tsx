@@ -1,6 +1,33 @@
+import HouseAttributes, {
+  HouseAttributesProps,
+} from "@/components/HouseAttributes";
 import Image from "next/image";
-import { LuFlower2 } from "react-icons/lu";
-import { TbWashDryDip } from "react-icons/tb";
+import { LuUsers } from "react-icons/lu";
+
+const myHouse: HouseAttributesProps = {
+  roomSize: 25,
+  personalShower: true,
+  roomSink: true,
+  roomFurnished: true,
+  forCouples: true,
+  garden: true,
+  terrace: true,
+  bathrooms: 2,
+  toilets: 2,
+  basementStorage: true,
+  kitchens: 1,
+  workingSpace: true,
+  washingMachine: true,
+  dishWasher: true,
+  wifi: true,
+  netflix: true,
+  bbq: true,
+  cleaningHelp: true,
+  bikeStorage: true,
+  carParking: true,
+  garage: true,
+  dryingMachine: true,
+};
 
 export default function Listing({ params }: { params: { id: string } }) {
   return (
@@ -28,27 +55,30 @@ export default function Listing({ params }: { params: { id: string } }) {
         </p>
       </div>
       <div className=" bg-white px-5 py-4">
-        <h2 className="font-mono text-2xl mb-4">The house</h2>
-        <h3 className="font-bold mb-2">Your room</h3>
-        <div className="flex space-x-2 mb-3">
-          <LuFlower2 size={24} />
-          <div>Garden</div>
-        </div>
-        <div className="flex space-x-2">
-          <TbWashDryDip size={24} />
-          <div>Dishwasher</div>
-        </div>
+        <h2 className="font-mono text-2xl mb-3">The house</h2>
+        <HouseAttributes {...myHouse} />
       </div>
       <div className=" bg-dark-purple px-5 py-4">
-        <h2 className="font-mono text-2xl mb-2 text-white">About you</h2>
-        <p className="text-white">
-          We love doing some tv watching, game playing or doing a little dance.
-          Lisa is an astronaut, Ben is a consultant and Mary is a Navy Seal. We
-          do love us some good food as well.
-        </p>
+        <h2 className="font-mono text-2xl text-white">The people</h2>
+        <div className="flex items-center space-x-2 py-3 border-b-2 border-dotted border-white">
+          <LuUsers color="white" size={24} />
+          <div className="text-white">5 other cohousers</div>
+        </div>
+        <div className="flex items-center space-x-2 py-3 border-b-2 border-dotted border-white">
+          <LuUsers color="white" size={24} />
+          <div className="text-white">5 other cohousers</div>
+        </div>{" "}
+        <div className="flex items-center space-x-2 py-3 border-b-2 border-dotted border-white">
+          <LuUsers color="white" size={24} />
+          <div className="text-white">5 other cohousers</div>
+        </div>
+        <div className="flex items-center space-x-2 pt-3">
+          <LuUsers color="white" size={24} />
+          <div className="text-white">5 other cohousers</div>
+        </div>
       </div>
       <nav className="z-50 sticky bottom-0 w-full bg-white border-t-2">
-        <div className="flex flex-row items-center justify-between px-5 py-4">
+        <div className="flex flex-row items-center justify-between px-5 py-6">
           <div>
             <div className="font-mono mb-1">500/month</div>
             <div className="italic">Starting 03/09/2023</div>
