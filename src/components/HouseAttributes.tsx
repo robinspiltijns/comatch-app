@@ -25,7 +25,7 @@ import {
   TbCat,
 } from "react-icons/tb";
 import { GiBarbecue } from "react-icons/gi";
-import { FaSink } from "react-icons/fa";
+import { FaFaucet } from "react-icons/fa";
 import {
   MdOutlineGarage,
   MdOutlineCleaningServices,
@@ -203,7 +203,7 @@ function houseAttributeToBadgeProps(
     case "personalShower":
       return { label: "Personal shower", icon: LuShowerHead };
     case "roomSink":
-      return { label: "Sink in room", icon: FaSink };
+      return { label: "Sink in room", icon: FaFaucet };
     case "roomFurnished":
       return { label: "Furnished", icon: TbArmchair };
     case "forCouples":

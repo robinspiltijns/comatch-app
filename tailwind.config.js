@@ -18,6 +18,5 @@ export const theme = {
     "dark-purple": "#56407B",
     white: "#FFFFFF",
     black: "#000000",
-    orange: "#F96E46",
   },
 };
