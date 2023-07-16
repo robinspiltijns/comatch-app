@@ -21,19 +21,26 @@ import {
   TbBike,
   TbCar,
   TbWashDry,
+  TbDog,
+  TbCat,
 } from "react-icons/tb";
 import { GiBarbecue } from "react-icons/gi";
 import { FaSink } from "react-icons/fa";
-import { MdOutlineGarage, MdOutlineCleaningServices } from "react-icons/md";
+import {
+  MdOutlineGarage,
+  MdOutlineCleaningServices,
+  MdOutlineHeatPump,
+} from "react-icons/md";
 import AttributeBadge, { AttributeBadgeProps } from "./AttributeBadge";
 import { useState } from "react";
 
 export type HouseAttributesProps = {
+  petsAllowed: boolean;
+  petsPresent: boolean;
   roomSize: number;
   personalShower: boolean;
   roomSink: boolean;
   roomFurnished: boolean;
-  forCouples: boolean;
   garden: boolean;
   terrace: boolean;
   bathrooms: number;
@@ -44,6 +51,7 @@ export type HouseAttributesProps = {
   washingMachine: boolean;
   dryingMachine: boolean;
   dishWasher: boolean;
+  forCouples: boolean;
   wifi: boolean;
   netflix: boolean;
   bbq: boolean;
@@ -51,6 +59,7 @@ export type HouseAttributesProps = {
   bikeStorage: boolean;
   carParking: boolean;
   garage: boolean;
+  epcRating: "A" | "B" | "C" | "D" | "E" | "F";
 };
 
 type HouseAttributeCategory = "ROOM" | "COMMON_SPACE" | "AMENITIES";
@@ -58,55 +67,6 @@ type HouseAttributeCategory = "ROOM" | "COMMON_SPACE" | "AMENITIES";
 type HouseAttribute = {
   [K in keyof HouseAttributesProps]: [K, HouseAttributesProps[K]];
 }[keyof HouseAttributesProps];
-
-function getHouseAttributePriority(houseAttribute: HouseAttribute): number {
-  switch (houseAttribute[0]) {
-    case "roomSize":
-      return 1;
-    case "forCouples":
-      return 2;
-    case "garden":
-      return 3;
-    case "terrace":
-      return 4;
-    case "washingMachine":
-      return 5;
-    case "dishWasher":
-      return 6;
-    case "bathrooms":
-      return 7;
-    case "toilets":
-      return 8;
-    case "roomFurnished":
-      return 9;
-    case "netflix":
-      return 10;
-    case "wifi":
-      return 11;
-    case "personalShower":
-      return 12;
-    case "roomSink":
-      return 13;
-    case "dryingMachine":
-      return 13.5;
-    case "cleaningHelp":
-      return 14;
-    case "bikeStorage":
-      return 15;
-    case "carParking":
-      return 16;
-    case "garage":
-      return 17;
-    case "workingSpace":
-      return 18;
-    case "bbq":
-      return 19;
-    case "basementStorage":
-      return 20;
-    case "kitchens":
-      return 21;
-  }
-}
 
 function getHouseAttributeCategory(
   houseAttribute: HouseAttribute
@@ -156,6 +116,67 @@ function getHouseAttributeCategory(
       return "COMMON_SPACE";
     case "dryingMachine":
       return "AMENITIES";
+    case "epcRating":
+      return "COMMON_SPACE";
+    case "petsAllowed":
+      return "COMMON_SPACE";
+    case "petsPresent":
+      return "COMMON_SPACE";
+  }
+}
+
+function getHouseAttributePriority(houseAttribute: HouseAttribute): number {
+  switch (houseAttribute[0]) {
+    case "roomSize":
+      return 2;
+    case "epcRating":
+      return 3;
+    case "forCouples":
+      return 4;
+    case "garden":
+      return 5;
+    case "terrace":
+      return 6;
+    case "petsAllowed":
+      return 7;
+    case "petsPresent":
+      return 8;
+    case "washingMachine":
+      return 9;
+    case "dishWasher":
+      return 10;
+    case "bathrooms":
+      return 11;
+    case "toilets":
+      return 12;
+    case "roomFurnished":
+      return 13;
+    case "netflix":
+      return 14;
+    case "wifi":
+      return 15;
+    case "personalShower":
+      return 16;
+    case "roomSink":
+      return 17;
+    case "dryingMachine":
+      return 18;
+    case "cleaningHelp":
+      return 19;
+    case "bikeStorage":
+      return 20;
+    case "carParking":
+      return 21;
+    case "garage":
+      return 22;
+    case "workingSpace":
+      return 23;
+    case "bbq":
+      return 24;
+    case "basementStorage":
+      return 25;
+    case "kitchens":
+      return 26;
   }
 }
 
@@ -170,6 +191,10 @@ function houseAttributeToBadgeProps(
   houseAttribute: HouseAttribute
 ): AttributeBadgeProps {
   switch (houseAttribute[0]) {
+    case "petsAllowed":
+      return { label: "Pets allowed", icon: TbDog };
+    case "petsPresent":
+      return { label: "Pet(s) present", icon: TbCat };
     case "roomSize":
       return {
         label: `Room size: ${houseAttribute[1]}m\u00b2`,
@@ -217,6 +242,11 @@ function houseAttributeToBadgeProps(
       return { label: "Garage", icon: MdOutlineGarage };
     case "dryingMachine":
       return { label: "Drying machine", icon: TbWashTumbleDry };
+    case "epcRating":
+      return {
+        label: `EPC rating: ${houseAttribute[1]}`,
+        icon: MdOutlineHeatPump,
+      };
   }
 }
 
@@ -243,7 +273,7 @@ function getBadgesInCategory(
   houseAttributeCategory: HouseAttributeCategory,
   houseAttributes: HouseAttributesProps
 ): JSX.Element[] {
-  return getApplicableHouseAttributes(houseAttributes)
+  return sortHouseAttributes(getApplicableHouseAttributes(houseAttributes))
     .filter(
       (houseAttribute) =>
         getHouseAttributeCategory(houseAttribute) == houseAttributeCategory

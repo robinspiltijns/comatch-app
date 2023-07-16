@@ -1,9 +1,58 @@
 import { Timestamp } from "firebase/firestore";
 import { z } from "zod";
 
+const epcRating = z.enum(["A", "B", "C", "D", "E", "F"]);
+
+const houseAttributes = z.object({
+  petsAllowed: z.boolean(),
+  petsPresent: z.boolean(),
+  roomSize: z.number().int(),
+  personalShower: z.boolean(),
+  roomSink: z.boolean(),
+  roomFurnished: z.boolean(),
+  forCouples: z.boolean(),
+  garden: z.boolean(),
+  terrace: z.boolean(),
+  bathrooms: z.number(),
+  toilets: z.number().int(),
+  basementStorage: z.boolean(),
+  kitchens: z.number().int(),
+  workingSpace: z.boolean(),
+  washingMachine: z.boolean(),
+  dishWasher: z.boolean(),
+  wifi: z.boolean(),
+  netflix: z.boolean(),
+  bbq: z.boolean(),
+  cleaningHelp: z.boolean(),
+  bikeStorage: z.boolean(),
+  carParking: z.boolean(),
+  garage: z.boolean(),
+  dryingMachine: z.boolean(),
+  epcRating: epcRating,
+});
+
+export const docToListing = z
+  .object({
+    title: z.string(),
+    imageUrl: z.string(),
+    moveInDate: z.instanceof(Timestamp),
+    domicile: z.boolean(),
+    housemates: z.number().int(),
+    ageRange: z.tuple([z.number().int(), z.number().int()]),
+    price: z.number(),
+    city: z.string(),
+    street: z.string(),
+    description: z.string(),
+    houseAttributes: houseAttributes,
+  })
+  .transform((data) => ({
+    ...data,
+    moveInDate: data.moveInDate.toDate(),
+  }));
+
 export const docToListingSummary = z
   .object({
-    id: z.string(),
+    listingId: z.string(),
     thumbnail: z.string(), // more strict type?
     title: z.string(),
     moveInDate: z.instanceof(Timestamp),
@@ -17,42 +66,5 @@ export const docToListingSummary = z
     moveInDate: data.moveInDate.toDate(),
   }));
 
-const houseType = z.enum(["APPARTMENT", "HOUSE"]);
-const epcRating = z.enum(["A", "B", "C", "D", "E", "F"]);
-
-const houseProps = z.object({
-  type: houseType,
-  roomSize: z.bigint(),
-  epcRating: epcRating,
-  cleaningStaff: z.boolean(),
-  garden: z.boolean(),
-  terrace: z.boolean(),
-  furnished: z.boolean(),
-  bathRoomAmount: z.bigint().optional(),
-  toiletAmount: z.bigint().optional(),
-  dishwasher: z.boolean(),
-  washingMachine: z.boolean(),
-  dryer: z.boolean(),
-  houseSize: z.bigint().optional(),
-  garage: z.boolean(),
-  pool: z.boolean(),
-  basement: z.boolean(),
-});
-
-export const docToListingDetails = z
-  .object({
-    images: z.array(z.string()),
-    price: z.number(),
-    moveInDate: z.instanceof(Timestamp),
-    title: z.string(),
-    street: z.string(),
-    description: z.string(),
-    houseProperties: houseProps,
-  })
-  .transform((data) => ({
-    ...data,
-    moveInDate: data.moveInDate.toDate(),
-  }));
-
 export type ListingSummaryType = z.output<typeof docToListingSummary>;
-export type ListingDetailsType = z.output<typeof docToListingDetails>;
+export type ListingType = z.output<typeof docToListing>;
