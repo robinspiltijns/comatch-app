@@ -20,18 +20,18 @@ function Authenticate(): JSX.Element {
       {supportedUserAgent && (
         <button
           onClick={handleLogin}
-          className="bg-white border-2 rounded-xl w-full py-3 px-4 font-sans"
+          className="bg-white border-2 rounded-xl w-full py-3 px-4"
         >
           <div className="flex flex-row items-center relative">
             <Image src="/google.png" alt="google icon" width={25} height={20} />
-            <div className="font-sans absolute text-center w-full">
+            <div className="absolute text-center w-full">
               Continue with google
             </div>
           </div>
         </button>
       )}
       {!supportedUserAgent && (
-        <div className="font-sans">
+        <div>
           This browser is not supported. Please open this page in your default
           browser.
         </div>

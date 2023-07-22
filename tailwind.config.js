@@ -8,11 +8,9 @@ export const content = [
 ];
 export const plugins = [];
 export const theme = {
-  extend: {
-    fontFamily: {
-      mono: ["var(--font-ibm-mono)", ...fontFamily.mono],
-      sans: ["var(--font-ibm-sans)", ...fontFamily.sans],
-    },
+  fontFamily: {
+    mono: ["var(--font-ibm-mono)", ...fontFamily.mono],
+    sans: ["var(--font-ibm-sans)", ...fontFamily.sans],
   },
   colors: {
     background: "#F5F3EC",

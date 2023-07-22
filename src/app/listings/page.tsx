@@ -6,7 +6,7 @@ import { collection, getDocs, orderBy, query } from "firebase/firestore";
 async function getListingSummaries(): Promise<ListingSummaryType[]> {
   // Note: documents without creationDate will not be included in the response.
   const sortedListingCollection = await getDocs(
-    query(collection(db, "listings"), orderBy("creationDate", "desc"))
+    query(collection(db, "listingSummaries"), orderBy("creationDate", "desc"))
   );
   const docs = sortedListingCollection.docs.map((doc) => doc.data());
   const listingSummaries: ListingSummaryType[] = [];
@@ -32,7 +32,7 @@ async function Listings() {
   return (
     <div className="p-5 flex flex-col gap-5">
       {listingSummaries.map((listingSummary) => (
-        <ListingSummary key={listingSummary.id} {...listingSummary} />
+        <ListingSummary key={listingSummary.listingId} {...listingSummary} />
       ))}
     </div>
   );
