@@ -31,6 +31,26 @@ const houseAttributes = z.object({
   epcRating: epcRating,
 });
 
+const peopleAttributes = z.object({
+  housematesAmount: z.number(),
+  genderAmounts: z.object({
+    male: z.number(),
+    female: z.number(),
+    other: z.number(),
+  }),
+  workingOut: z.boolean(),
+  goingForDrinks: z.boolean(),
+  movieNights: z.boolean(),
+  boardGames: z.boolean(),
+  partying: z.boolean(),
+  hikes: z.boolean(),
+  cooking: z.boolean(),
+  karaoke: z.boolean(),
+  reading: z.boolean(),
+  gardening: z.boolean(),
+  coffee: z.boolean(),
+});
+
 export const docToListing = z
   .object({
     title: z.string(),
@@ -44,6 +64,7 @@ export const docToListing = z
     street: z.string(),
     description: z.string(),
     houseAttributes: houseAttributes,
+    peopleAttributes: peopleAttributes,
   })
   .transform((data) => ({
     ...data,
@@ -68,3 +89,5 @@ export const docToListingSummary = z
 
 export type ListingSummaryType = z.output<typeof docToListingSummary>;
 export type ListingType = z.output<typeof docToListing>;
+export type HouseAttributesType = z.infer<typeof houseAttributes>;
+export type PeopleAttributes = z.infer<typeof peopleAttributes>;

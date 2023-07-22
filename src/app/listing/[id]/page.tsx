@@ -2,8 +2,8 @@ import HouseAttributes from "@/components/HouseAttributes";
 import { docToListing } from "@/lib/schema";
 import { getDoc, doc } from "firebase/firestore";
 import Image from "next/image";
-import { LuUsers } from "react-icons/lu";
 import { db } from "@/lib/firebase";
+import PeopleAttributes from "@/components/PeopleAttributes";
 
 async function Listing({ params }: { params: { id: string } }) {
   const document = (await getDoc(doc(db, "listings", params.id))).data();
@@ -36,24 +36,9 @@ async function Listing({ params }: { params: { id: string } }) {
           <h2 className="font-mono text-2xl mb-3">The house</h2>
           <HouseAttributes {...listing.houseAttributes} />
         </div>
-        <div className=" bg-dark-purple px-5 py-4">
-          <h2 className="font-mono text-2xl text-white">The people</h2>
-          <div className="flex items-center space-x-2 py-3 border-b-2 border-dotted border-white">
-            <LuUsers color="white" size={24} />
-            <div className="text-white">5 other cohousers</div>
-          </div>
-          <div className="flex items-center space-x-2 py-3 border-b-2 border-dotted border-white">
-            <LuUsers color="white" size={24} />
-            <div className="text-white">5 other cohousers</div>
-          </div>{" "}
-          <div className="flex items-center space-x-2 py-3 border-b-2 border-dotted border-white">
-            <LuUsers color="white" size={24} />
-            <div className="text-white">5 other cohousers</div>
-          </div>
-          <div className="flex items-center space-x-2 pt-3">
-            <LuUsers color="white" size={24} />
-            <div className="text-white">5 other cohousers</div>
-          </div>
+        <div className=" bg-dark-purple px-5 pt-4">
+          <h2 className="font-mono text-2xl text-white mb-3">The people</h2>
+          <PeopleAttributes {...listing.peopleAttributes} />
         </div>
         <nav className="z-50 sticky bottom-0 w-full bg-white border-t-2">
           <div className="flex flex-row items-center justify-between px-5 py-4">

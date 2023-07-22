@@ -33,40 +33,13 @@ import {
 } from "react-icons/md";
 import AttributeBadge, { AttributeBadgeProps } from "./AttributeBadge";
 import { useState } from "react";
-
-export type HouseAttributesProps = {
-  petsAllowed: boolean;
-  petsPresent: boolean;
-  roomSize: number;
-  personalShower: boolean;
-  roomSink: boolean;
-  roomFurnished: boolean;
-  garden: boolean;
-  terrace: boolean;
-  bathrooms: number;
-  toilets: number;
-  basementStorage: boolean;
-  kitchens: number;
-  workingSpace: boolean;
-  washingMachine: boolean;
-  dryingMachine: boolean;
-  dishWasher: boolean;
-  forCouples: boolean;
-  wifi: boolean;
-  netflix: boolean;
-  bbq: boolean;
-  cleaningHelp: boolean;
-  bikeStorage: boolean;
-  carParking: boolean;
-  garage: boolean;
-  epcRating: "A" | "B" | "C" | "D" | "E" | "F";
-};
+import { HouseAttributesType } from "@/lib/schema";
 
 type HouseAttributeCategory = "ROOM" | "COMMON_SPACE" | "AMENITIES";
 
 type HouseAttribute = {
-  [K in keyof HouseAttributesProps]: [K, HouseAttributesProps[K]];
-}[keyof HouseAttributesProps];
+  [K in keyof HouseAttributesType]: [K, HouseAttributesType[K]];
+}[keyof HouseAttributesType];
 
 function getHouseAttributeCategory(
   houseAttribute: HouseAttribute
@@ -181,9 +154,9 @@ function getHouseAttributePriority(houseAttribute: HouseAttribute): number {
 }
 
 function getApplicableHouseAttributes(
-  houseAttributeProps: HouseAttributesProps
+  houseAttributes: HouseAttributesType
 ): HouseAttribute[] {
-  const attributes = Object.entries(houseAttributeProps) as HouseAttribute[];
+  const attributes = Object.entries(houseAttributes) as HouseAttribute[];
   return attributes.filter((attribute) => attribute[1] !== false);
 }
 
@@ -263,7 +236,7 @@ function sortHouseAttributes(
   );
 }
 
-function getFirstBadges(houseAttributes: HouseAttributesProps): JSX.Element[] {
+function getFirstBadges(houseAttributes: HouseAttributesType): JSX.Element[] {
   return sortHouseAttributes(getApplicableHouseAttributes(houseAttributes))
     .slice(0, 6)
     .map(houseAttributeToBadge);
@@ -271,7 +244,7 @@ function getFirstBadges(houseAttributes: HouseAttributesProps): JSX.Element[] {
 
 function getBadgesInCategory(
   houseAttributeCategory: HouseAttributeCategory,
-  houseAttributes: HouseAttributesProps
+  houseAttributes: HouseAttributesType
 ): JSX.Element[] {
   return sortHouseAttributes(getApplicableHouseAttributes(houseAttributes))
     .filter(
@@ -281,7 +254,7 @@ function getBadgesInCategory(
     .map(houseAttributeToBadge);
 }
 
-export default function HouseAttributes(props: HouseAttributesProps) {
+export default function HouseAttributes(props: HouseAttributesType) {
   const [showDetails, setShowDetails] = useState(false);
   return (
     <div>
