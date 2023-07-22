@@ -5,14 +5,6 @@ import Image from "next/image";
 import { db } from "@/lib/firebase";
 import PeopleAttributes from "@/components/PeopleAttributes";
 
-export async function generateStaticParams() {
-  console.log("Running static params");
-  const querySnapshot = await getDocs(query(collection(db, "listings")));
-  return querySnapshot.docs.map((doc) => {
-    id: doc.id;
-  });
-}
-
 async function Listing({ params }: { params: { id: string } }) {
   console.log("Rendering listing " + params.id);
   console.log("fetching docs");
