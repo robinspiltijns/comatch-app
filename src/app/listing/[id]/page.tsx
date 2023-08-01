@@ -11,7 +11,6 @@ async function Listing({ params }: { params: { id: string } }) {
 
   if (parsedDoc.success) {
     const listing = parsedDoc.data;
-    console.log(listing);
     return (
       <div>
         <div className="relative h-72">
