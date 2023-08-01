@@ -5,21 +5,9 @@ import Image from "next/image";
 import { db } from "@/lib/firebase";
 import PeopleAttributes from "@/components/PeopleAttributes";
 
-export async function generateStaticParams() {
-  console.log("Running static params");
-  const querySnapshot = await getDocs(query(collection(db, "listings")));
-  return querySnapshot.docs.map((doc) => {
-    id: doc.id;
-  });
-}
-
 async function Listing({ params }: { params: { id: string } }) {
-  console.log("Rendering listing " + params.id);
-  console.log("fetching docs");
   const document = (await getDoc(doc(db, "listings", params.id))).data();
-  console.log("fetched docs");
   const parsedDoc = docToListing.safeParse(document);
-  console.log("Parsed docs");
 
   if (parsedDoc.success) {
     const listing = parsedDoc.data;
