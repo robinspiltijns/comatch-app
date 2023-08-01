@@ -1,6 +1,6 @@
 import HouseAttributes from "@/components/HouseAttributes";
 import { docToListing } from "@/lib/schema";
-import { getDoc, doc, getDocs, query, collection } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 import Image from "next/image";
 import { db } from "@/lib/firebase";
 import PeopleAttributes from "@/components/PeopleAttributes";

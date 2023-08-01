@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 const handleLogin = () => signInWithPopup(auth, googleAuthProvider);
 
 function Authenticate(): JSX.Element {
+  // Google OAuth does not support the default Facebook Messenger browser on iPhone.
   useEffect(() => {
     if (window.navigator.userAgent.includes("Messenger"))
       setSupportedUserAgent(false);
