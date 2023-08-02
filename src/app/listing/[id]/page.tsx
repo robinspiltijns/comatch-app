@@ -1,9 +1,16 @@
 import HouseAttributes from "@/components/HouseAttributes";
 import { docToListing } from "@/lib/schema";
-import { getDoc, doc } from "firebase/firestore";
+import { getDoc, doc, getDocs, query, collection } from "firebase/firestore";
 import Image from "next/image";
 import { db } from "@/lib/firebase";
 import PeopleAttributes from "@/components/PeopleAttributes";
+
+export async function generateStaticParams() {
+  const querySnapshot = await getDocs(query(collection(db, "listings")));
+  return querySnapshot.docs.map((doc) => {
+    id: doc.id;
+  });
+}
 
 async function Listing({ params }: { params: { id: string } }) {
   const before = Date.now();
