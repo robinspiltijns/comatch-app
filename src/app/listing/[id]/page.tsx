@@ -6,7 +6,10 @@ import { db } from "@/lib/firebase";
 import PeopleAttributes from "@/components/PeopleAttributes";
 
 async function Listing({ params }: { params: { id: string } }) {
+  const before = Date.now();
   const document = (await getDoc(doc(db, "listings", params.id))).data();
+  const after = Date.now();
+  console.log("firebase query: " + (after - before));
   const parsedDoc = docToListing.safeParse(document);
 
   if (parsedDoc.success) {
