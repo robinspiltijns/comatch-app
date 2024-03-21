@@ -1,9 +1,10 @@
 import HouseAttributes from "@/components/HouseAttributes";
 import { docToListing } from "@/lib/schema";
-import { getDoc, doc, getDocs, query, collection } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 import Image from "next/image";
 import { db } from "@/lib/firebase";
 import PeopleAttributes from "@/components/PeopleAttributes";
+import LightBox from "@/components/LightBox";
 
 async function Listing({ params }: { params: { id: string } }) {
   const before = Date.now();
@@ -42,6 +43,7 @@ async function Listing({ params }: { params: { id: string } }) {
           <h2 className="font-mono text-2xl text-white mb-3">The people</h2>
           <PeopleAttributes {...listing.peopleAttributes} />
         </div>
+        <LightBox />
         <nav className="z-50 sticky bottom-0 w-full bg-white border-t-2">
           <div className="flex flex-row items-center justify-between px-5 py-4">
             <div>
