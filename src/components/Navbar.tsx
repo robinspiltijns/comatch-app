@@ -32,7 +32,7 @@ export default function Navbar() {
       }`}
     >
       <div
-        className={`flex flex-row justify-between align-middle px-5 py-3 border-b-2 ${
+        className={`flex flex-row justify-between px-5 py-3 border-b-2 ${
           showMenu ? "border-white" : "border-black"
         }`}
       >
@@ -56,12 +56,41 @@ export default function Navbar() {
             />
           )}
         </Link>
-        <button onClick={toggleMenu}>
+        <button className="lg:hidden" onClick={toggleMenu}>
           <svg className="h-8 w-8" stroke={showMenu ? "white" : "black"}>
             {!showMenu && <path strokeWidth="3" d="M4 8h24M4 16h24M4 24h24" />}
             {showMenu && <path strokeWidth="3" d="M4 8L28 32M4 32L28 8" />}
           </svg>
         </button>
+        <div className="hidden lg:flex lg:flex-row lg:space-x-10 lg:align-middle lg:items-center">
+          {authState.type == "AUTHENTICATED" && (
+            <div
+              onClick={handleLogout}
+              className="font-mono cursor-pointer hover:underline"
+            >
+              Log out
+            </div>
+          )}
+          {authState.type != "AUTHENTICATED" && (
+            <Link href="/log-in-or-sign-up">
+              <div className="font-mono cursor-pointer hover:underline">
+                Log in
+              </div>
+            </Link>
+          )}
+          {authState.type != "AUTHENTICATED" && (
+            <Link href="/log-in-or-sign-up">
+              <div className="font-mono cursor-pointer hover:underline">
+                Register
+              </div>
+            </Link>
+          )}
+          <Link href="/post-listing">
+            <div className="font-mono cursor-pointer hover:underline">
+              Post cohousing
+            </div>
+          </Link>
+        </div>
       </div>
       {showMenu && (
         <div className={`absolute w-full bg-black`}>
