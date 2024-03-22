@@ -7,7 +7,6 @@ import { useContext } from "react";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -31,10 +30,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
+import { nlBE } from "date-fns/locale";
 
 const cohousingFormSchema = z.object({
   title: z.string().min(1, "Geef een titel in."),
@@ -75,6 +74,9 @@ function PostCohousingForm() {
   ) => {
     console.log(cohousingFormPayload);
   };
+
+  const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
 
   return (
     <Form {...form}>
@@ -171,19 +173,12 @@ function PostCohousingForm() {
               </FormItem>
             )}
           />
-
-          {/* <FormControl>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <button className="flex h-10 w-full items-center justify-between rounded-md border-2 bg-white px-3 py-2 text-sm">
-                        {field.value ? ( */}
-
           <FormField
             control={form.control}
-            name="dob"
+            name="moveIndate"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Date of birth</FormLabel>
+                <FormLabel>Inhuisdatum</FormLabel>
                 <FormControl>
                   <Popover>
                     <PopoverTrigger asChild>
@@ -196,14 +191,17 @@ function PostCohousingForm() {
                         <CalendarIcon className="ml-auto h-4 w-4" />
                       </button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
+                    <PopoverContent
+                      className="border-2 w-auto p-0"
+                      align="center"
+                    >
                       <Calendar
                         mode="single"
+                        locale={nlBE}
                         selected={field.value}
                         onSelect={field.onChange}
-                        disabled={(date) =>
-                          date < new Date().setHours(0, 0, 0, 0)
-                        }
+                        disabled={(date) => date < currentDate}
+                        showOutsideDays={false}
                         initialFocus
                       />
                     </PopoverContent>
