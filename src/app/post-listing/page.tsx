@@ -102,7 +102,7 @@ function PostCohousingForm() {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold">Bescrhijving</FormLabel>
+                <FormLabel>Bescrhijving</FormLabel>
                 <FormControl>
                   <Input placeholder="Bescrhijving" {...field} />
                 </FormControl>
@@ -119,9 +119,7 @@ function PostCohousingForm() {
             name="domicile"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold">
-                  Domicile verplicht
-                </FormLabel>
+                <FormLabel>Domicile verplicht</FormLabel>
                 <FormControl>
                   <Select
                     onValueChange={field.onChange}
@@ -146,7 +144,7 @@ function PostCohousingForm() {
             name="roomsAmount"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold">Aantal kamers</FormLabel>
+                <FormLabel>Aantal kamers</FormLabel>
                 <FormControl>
                   <Select
                     onValueChange={field.onChange}
@@ -170,6 +168,48 @@ function PostCohousingForm() {
                     </SelectContent>
                   </Select>
                 </FormControl>
+              </FormItem>
+            )}
+          />
+
+          {/* <FormControl>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button className="flex h-10 w-full items-center justify-between rounded-md border-2 bg-white px-3 py-2 text-sm">
+                        {field.value ? ( */}
+
+          <FormField
+            control={form.control}
+            name="dob"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Date of birth</FormLabel>
+                <FormControl>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button className="flex h-10 w-full items-center justify-between rounded-md border-2 bg-white px-3 py-2 text-sm">
+                        {field.value ? (
+                          format(field.value, "dd/MM/yyyy")
+                        ) : (
+                          <span>Kies inhuisdatum</span>
+                        )}
+                        <CalendarIcon className="ml-auto h-4 w-4" />
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        disabled={(date) =>
+                          date < new Date().setHours(0, 0, 0, 0)
+                        }
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
