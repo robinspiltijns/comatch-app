@@ -32,7 +32,7 @@ export default function Navbar() {
       }`}
     >
       <div
-        className={`flex flex-row justify-between px-5 py-3 border-b-2 ${
+        className={`flex flex-row justify-between px-5 lg:px-20 py-3 border-b-2 ${
           showMenu ? "border-white" : "border-black"
         }`}
       >
@@ -68,26 +68,26 @@ export default function Navbar() {
               onClick={handleLogout}
               className="font-mono cursor-pointer hover:underline"
             >
-              Log out
+              Uitloggen
             </div>
           )}
           {authState.type != "AUTHENTICATED" && (
             <Link href="/log-in-or-sign-up">
               <div className="font-mono cursor-pointer hover:underline">
-                Log in
+                Inloggen
               </div>
             </Link>
           )}
           {authState.type != "AUTHENTICATED" && (
             <Link href="/log-in-or-sign-up">
               <div className="font-mono cursor-pointer hover:underline">
-                Register
+                Registreren
               </div>
             </Link>
           )}
           <Link href="/post-listing">
             <div className="font-mono cursor-pointer hover:underline">
-              Post cohousing
+              Zoekertje plaatsen
             </div>
           </Link>
         </div>

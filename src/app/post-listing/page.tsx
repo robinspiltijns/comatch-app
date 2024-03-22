@@ -5,6 +5,8 @@ import Authenticate from "@/components/Authenticate";
 import { AuthContext } from "@/lib/AuthProvider";
 import { useContext } from "react";
 
+function PostCohousingForm() {}
+
 export default function PostListing() {
   const authState = useContext(AuthContext);
 
@@ -19,7 +21,11 @@ export default function PostListing() {
       );
       break;
     case "UNAUTHENTICATED":
-      body = <Authenticate />;
+      body = (
+        <div className="flex flex-row justify-center">
+          <Authenticate />
+        </div>
+      );
       break;
     case "AUTHENTICATED":
       body = <div>To add flow for posting cohouse.</div>;
@@ -30,10 +36,10 @@ export default function PostListing() {
 
   return (
     <div>
-      <h2 className="font-mono text-2xl py-2 px-5 border-b-2 border-dotted">
-        Place listing
+      <h2 className="font-mono text-2xl py-3 px-5 lg:px-20 border-b-2 border-dotted">
+        Zoekertje plaatsen
       </h2>
-      <div className="p-5">{body}</div>
+      <div className="p-5 lg:px-20">{body}</div>
     </div>
   );
 }

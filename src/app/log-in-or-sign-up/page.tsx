@@ -15,10 +15,10 @@ export default function LogInOrSignUp() {
 
   return (
     <div>
-      <h2 className="font-mono text-2xl py-2 px-5 border-b-2 border-dotted">
-        Log in or sign up
+      <h2 className="font-mono text-2xl py-3 px-5 lg:px-20 border-b-2 border-dotted">
+        Inloggen of registreren
       </h2>
-      <div className="p-5">
+      <div className="p-5 flex flex-row justify-center">
         <Authenticate />
       </div>
     </div>

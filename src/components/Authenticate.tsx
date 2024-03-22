@@ -21,13 +21,11 @@ function Authenticate(): JSX.Element {
       {supportedUserAgent && (
         <button
           onClick={handleLogin}
-          className="bg-white border-2 rounded-xl w-full py-3 px-4"
+          className="bg-white border-2 rounded-xl py-3 px-4"
         >
-          <div className="flex flex-row items-center relative">
+          <div className="flex flex-row space-x-5 items-center relative">
             <Image src="/google.png" alt="google icon" width={25} height={20} />
-            <div className="absolute text-center w-full">
-              Continue with google
-            </div>
+            <div className="text-center w-full">Doorgaan met Google</div>
           </div>
         </button>
       )}
