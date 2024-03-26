@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { GoogleAuthProvider, getAuth } from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -19,6 +20,13 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+export async function uploadImage(image: File) {
+  const storage = getStorage();
+  const storageRef = ref(storage, "listingThumbnails/test.jpg");
+  const result = await uploadBytes(storageRef, image);
+  console.log(result);
+}
 
 // Exports
 export const db = getFirestore(app);

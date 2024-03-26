@@ -34,6 +34,7 @@ import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { nlBE } from "date-fns/locale";
+import { uploadImage } from "@/lib/firebase";
 
 const cohousingFormSchema = z.object({
   title: z.string().min(1, "Geef een titel in."),
@@ -58,6 +59,7 @@ const cohousingFormSchema = z.object({
     .number()
     .min(100, "Huurprijs moet groter dan 100 zijn.")
     .max(10000, "Geef een realistische huurprijs in."),
+  picture: z.instanceof(FileList).optional(),
 });
 
 type CohousingFormSchema = z.infer<typeof cohousingFormSchema>;
@@ -77,10 +79,13 @@ function PostCohousingForm() {
     cohousingFormPayload
   ) => {
     console.log(cohousingFormPayload);
+    uploadImage(cohousingFormPayload.picture![0]);
   };
 
   const currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
+
+  const fileRef = form.register("picture");
 
   return (
     <Form {...form}>
@@ -228,6 +233,23 @@ function PostCohousingForm() {
                     {...field}
                     onChange={(event) => field.onChange(+event.target.value)}
                   />
+                </FormControl>
+                <FormMessage>
+                  {form.formState.errors.price && (
+                    <p>{form.formState.errors.price.message}</p>
+                  )}
+                </FormMessage>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="picture"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Maandelijkse huurprijs (€)</FormLabel>
+                <FormControl>
+                  <Input type="file" placeholder="Huurprijs" {...fileRef} />
                 </FormControl>
                 <FormMessage>
                   {form.formState.errors.price && (
