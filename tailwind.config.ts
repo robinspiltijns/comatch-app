@@ -41,7 +41,10 @@ const config = {
     colors: {
       background: "#F5F3EC",
       "light-purple": "#C4B6E3",
-      "dark-purple": "#2D3142",
+      "dark-purple": "#7B4B94",
+      "light-grey": "#D5D5D5",
+      "dark-grey": "#8E8E8E",
+      red: "#E3170A",
       white: "#FFFFFF",
       black: "#000000",
     },
