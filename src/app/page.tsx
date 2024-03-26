@@ -9,7 +9,6 @@ async function getListingSummaries(): Promise<ListingSummary[]> {
     query(collection(db, "listingSummaries"), orderBy("creationDate", "desc"))
   );
   const docs = querySnapshot.docs.map((doc) => doc.data());
-  console.log(docs);
   const listingSummaries: ListingSummary[] = [];
   for (let doc of docs) {
     const parsedDoc = docToListingSummary.safeParse(doc);

@@ -259,15 +259,10 @@ function PostCohousingForm() {
             name="picture"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Maandelijkse huurprijs (€)</FormLabel>
+                <FormLabel>Foto&apos;s</FormLabel>
                 <FormControl>
-                  <Input type="file" placeholder="Huurprijs" {...fileRef} />
+                  <Input type="file" accept=",jpg, .jpeg, .png" {...fileRef} />
                 </FormControl>
-                <FormMessage>
-                  {form.formState.errors.price && (
-                    <p>{form.formState.errors.price.message}</p>
-                  )}
-                </FormMessage>
               </FormItem>
             )}
           />
