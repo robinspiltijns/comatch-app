@@ -54,6 +54,10 @@ const cohousingFormSchema = z.object({
     { required_error: "Geef het aantal kamers in." }
   ),
   moveIndate: z.date(),
+  price: z
+    .number()
+    .min(100, "Huurprijs moet groter dan 100 zijn.")
+    .max(10000, "Geef een realistische huurprijs in."),
 });
 
 type CohousingFormSchema = z.infer<typeof cohousingFormSchema>;
@@ -208,6 +212,28 @@ function PostCohousingForm() {
                   </Popover>
                 </FormControl>
                 <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="price"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Maandelijkse huurprijs (€)</FormLabel>
+                <FormControl>
+                  <Input
+                    type="number"
+                    placeholder="Huurprijs"
+                    {...field}
+                    onChange={(event) => field.onChange(+event.target.value)}
+                  />
+                </FormControl>
+                <FormMessage>
+                  {form.formState.errors.price && (
+                    <p>{form.formState.errors.price.message}</p>
+                  )}
+                </FormMessage>
               </FormItem>
             )}
           />
