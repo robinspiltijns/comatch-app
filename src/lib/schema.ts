@@ -31,8 +31,20 @@ const houseAttributes = z.object({
   epcRating: epcRating,
 });
 
+export const cohousersAmount = z.union([
+  z.literal("1"),
+  z.literal("2"),
+  z.literal("3"),
+  z.literal("4"),
+  z.literal("5"),
+  z.literal("6"),
+  z.literal("7"),
+  z.literal("8"),
+  z.literal("8+"),
+]);
+
 const peopleAttributes = z.object({
-  housematesAmount: z.number(),
+  amountOfCohousers: cohousersAmount,
   genderAmounts: z.object({
     male: z.number(),
     female: z.number(),
@@ -57,7 +69,7 @@ export const docToListing = z
     imageUrl: z.string(),
     moveInDate: z.instanceof(Timestamp),
     domicile: z.boolean(),
-    housemates: z.number().int(),
+    amountOfCohousers: z.number().int(),
     ageRange: z.tuple([z.number().int(), z.number().int()]),
     price: z.number(),
     city: z.string(),
@@ -78,16 +90,19 @@ export const docToListingSummary = z
     title: z.string(),
     moveInDate: z.instanceof(Timestamp),
     domicile: z.boolean(),
-    housemates: z.number().int(),
+    amountOfCohousers: cohousersAmount,
     ageRange: z.tuple([z.number().int(), z.number().int()]),
     price: z.number(),
+    creationDate: z.instanceof(Timestamp),
   })
   .transform((data) => ({
     ...data,
     moveInDate: data.moveInDate.toDate(),
+    creationDate: data.creationDate.toDate(),
   }));
 
-export type ListingSummaryType = z.output<typeof docToListingSummary>;
+export type ListingSummaryDoc = z.input<typeof docToListingSummary>;
+export type ListingSummary = z.output<typeof docToListingSummary>;
 export type ListingType = z.output<typeof docToListing>;
 export type HouseAttributesType = z.infer<typeof houseAttributes>;
 export type PeopleAttributes = z.infer<typeof peopleAttributes>;

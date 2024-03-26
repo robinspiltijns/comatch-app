@@ -99,14 +99,14 @@ export default function Navbar() {
               onClick={handleLogout}
               className="cursor-pointer font-mono text-white px-5 py-3"
             >
-              Log out
+              Uitloggen
             </div>
           )}
           {authState.type != "AUTHENTICATED" && (
             <div>
               <Link href="/log-in-or-sign-up">
                 <div className="font-mono text-white px-5 py-3 border-b-2 border-white">
-                  Log in
+                  Inloggen
                 </div>
               </Link>
               <Link href="/log-in-or-sign-up">
@@ -116,7 +116,7 @@ export default function Navbar() {
           )}
           <Link href="/post-listing">
             <div className="font-mono text-white px-5 py-3 border-t-2 border-white">
-              Post cohousing
+              Zoekertje plaatsen
             </div>
           </Link>
         </div>

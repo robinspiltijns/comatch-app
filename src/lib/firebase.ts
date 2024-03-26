@@ -1,8 +1,10 @@
+import { collection, doc, setDoc } from "firebase/firestore";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { GoogleAuthProvider, getAuth } from "firebase/auth";
+import { ListingSummary, ListingSummaryDoc } from "./schema";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -24,11 +26,18 @@ const app = initializeApp(firebaseConfig);
 export async function uploadImage(image: File) {
   const storage = getStorage();
   const storageRef = ref(storage, "listingThumbnails/test.jpg");
-  const result = await uploadBytes(storageRef, image);
-  console.log(result);
+  await uploadBytes(storageRef, image);
+  return await getDownloadURL(storageRef);
 }
 
 // Exports
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const googleAuthProvider = new GoogleAuthProvider();
+
+export async function uploadListingSummary(listingSummary: ListingSummaryDoc) {
+  await setDoc(
+    doc(db, "listingSummaries", listingSummary.listingId),
+    listingSummary
+  );
+}

@@ -34,23 +34,24 @@ import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { nlBE } from "date-fns/locale";
-import { uploadImage } from "@/lib/firebase";
+import { uploadImage, uploadListingSummary } from "@/lib/firebase";
+import { Timestamp } from "@firebase/firestore";
 
 const cohousingFormSchema = z.object({
   title: z.string().min(1, "Geef een titel in."),
   description: z.string().min(1, "Geef een bescrhijving in."),
-  domicile: z.union([z.literal("yes"), z.literal("no")]),
-  roomsAmount: z.union(
+  domicile: z.boolean(),
+  amountOfCohousers: z.union(
     [
-      z.literal("one"),
-      z.literal("two"),
-      z.literal("three"),
-      z.literal("four"),
-      z.literal("five"),
-      z.literal("six"),
-      z.literal("seven"),
-      z.literal("eight"),
-      z.literal("eightPlus"),
+      z.literal("1"),
+      z.literal("2"),
+      z.literal("3"),
+      z.literal("4"),
+      z.literal("5"),
+      z.literal("6"),
+      z.literal("7"),
+      z.literal("8"),
+      z.literal("8+"),
     ],
     { required_error: "Geef het aantal kamers in." }
   ),
@@ -59,7 +60,7 @@ const cohousingFormSchema = z.object({
     .number()
     .min(100, "Huurprijs moet groter dan 100 zijn.")
     .max(10000, "Geef een realistische huurprijs in."),
-  picture: z.instanceof(FileList).optional(),
+  picture: z.instanceof(FileList),
 });
 
 type CohousingFormSchema = z.infer<typeof cohousingFormSchema>;
@@ -71,15 +72,26 @@ function PostCohousingForm() {
     defaultValues: {
       title: "",
       description: "",
-      domicile: "yes",
+      domicile: true,
     },
   });
 
-  const onSubmit: SubmitHandler<CohousingFormSchema> = (
+  const onSubmit: SubmitHandler<CohousingFormSchema> = async (
     cohousingFormPayload
   ) => {
-    console.log(cohousingFormPayload);
-    uploadImage(cohousingFormPayload.picture![0]);
+    const listingId = crypto.randomUUID();
+    const downloadURL = await uploadImage(cohousingFormPayload.picture![0]);
+    await uploadListingSummary({
+      title: cohousingFormPayload.title,
+      domicile: cohousingFormPayload.domicile,
+      price: cohousingFormPayload.price,
+      amountOfCohousers: cohousingFormPayload.amountOfCohousers,
+      listingId,
+      thumbnail: downloadURL,
+      moveInDate: Timestamp.fromDate(cohousingFormPayload.moveIndate),
+      creationDate: Timestamp.fromDate(new Date()),
+      ageRange: [1, 3],
+    });
   };
 
   const currentDate = new Date();
@@ -133,8 +145,8 @@ function PostCohousingForm() {
                 <FormLabel>Domicile verplicht</FormLabel>
                 <FormControl>
                   <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
+                    onValueChange={(value) => field.onChange(value === "yes")}
+                    defaultValue={field.value ? "yes" : "no"}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Domicilie" />
@@ -152,29 +164,29 @@ function PostCohousingForm() {
           />
           <FormField
             control={form.control}
-            name="roomsAmount"
+            name="amountOfCohousers"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Aantal kamers</FormLabel>
+                <FormLabel>Aantal huisgenoten</FormLabel>
                 <FormControl>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Aantal kamers" />
+                      <SelectValue placeholder="Aantal huisgenoten" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        <SelectItem value={"one"}>1</SelectItem>
-                        <SelectItem value={"two"}>2</SelectItem>
-                        <SelectItem value={"three"}>3</SelectItem>
-                        <SelectItem value={"four"}>4</SelectItem>
-                        <SelectItem value={"five"}>5</SelectItem>
-                        <SelectItem value={"six"}>6</SelectItem>
-                        <SelectItem value={"seven"}>7</SelectItem>
-                        <SelectItem value={"eight"}>8</SelectItem>
-                        <SelectItem value={"eightPlus"}>8+</SelectItem>
+                        <SelectItem value={"1"}>1</SelectItem>
+                        <SelectItem value={"2"}>2</SelectItem>
+                        <SelectItem value={"3"}>3</SelectItem>
+                        <SelectItem value={"4"}>4</SelectItem>
+                        <SelectItem value={"5"}>5</SelectItem>
+                        <SelectItem value={"6"}>6</SelectItem>
+                        <SelectItem value={"7"}>7</SelectItem>
+                        <SelectItem value={"8"}>8</SelectItem>
+                        <SelectItem value={"8+"}>8+</SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </Select>

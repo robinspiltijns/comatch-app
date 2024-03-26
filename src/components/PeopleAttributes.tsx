@@ -24,7 +24,7 @@ type PeopleAttribute = {
 
 function getHouseAttributePriority(PeopleAttribute: PeopleAttribute): number {
   switch (PeopleAttribute[0]) {
-    case "housematesAmount":
+    case "amountOfCohousers":
       return 1;
     case "genderAmounts":
       return 2;
@@ -77,9 +77,9 @@ function peopleAttributeToIconAndLabel(peopleAttribute: PeopleAttribute): {
   icon: IconType;
 } {
   switch (peopleAttribute[0]) {
-    case "housematesAmount":
+    case "amountOfCohousers":
       return {
-        label: `Housemates: ${peopleAttribute[1]}`,
+        label: `Other cohousers: ${peopleAttribute[1]}`,
         icon: LuUsers,
       };
     case "genderAmounts":
