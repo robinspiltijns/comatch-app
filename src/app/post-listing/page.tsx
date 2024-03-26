@@ -60,7 +60,7 @@ const cohousingFormSchema = z.object({
     .number()
     .min(100, "Huurprijs moet groter dan 100 zijn.")
     .max(10000, "Geef een realistische huurprijs in."),
-  picture: z.instanceof(FileList),
+  picture: z.any(),
 });
 
 type CohousingFormSchema = z.infer<typeof cohousingFormSchema>;
