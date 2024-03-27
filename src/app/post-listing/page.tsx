@@ -1,10 +1,10 @@
 "use client";
 
-import LoadingSpinner from "@/components/LoadingSpinner";
-import Authenticate from "@/components/Authenticate";
-import { AuthContext } from "@/lib/AuthProvider";
+import LoadingSpinner from "@/app/_components/LoadingSpinner";
+import Authenticate from "@/app/_components/Authenticate";
+import { AuthContext } from "@/lib/providers/AuthProvider";
 import { useContext } from "react";
-import PostCohousingForm from "@/components/PostCohousingForm";
+import PostCohousingForm from "@/app/post-listing/PostCohousingForm";
 
 export default function PostListing() {
   const authState = useContext(AuthContext);

@@ -1,7 +1,7 @@
 "use client";
 
-import Authenticate from "@/components/Authenticate";
-import { AuthContext } from "@/lib/AuthProvider";
+import Authenticate from "@/app/_components/Authenticate";
+import { AuthContext } from "@/lib/providers/AuthProvider";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 

@@ -1,7 +1,7 @@
 import "./globals.css";
-import Navbar from "../components/Navbar";
+import Navbar from "./_components/Navbar";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
-import { AuthProvider } from "@/lib/AuthProvider";
+import { AuthProvider } from "@/lib/providers/AuthProvider";
 
 const ibm_plex_mono = IBM_Plex_Mono({
   subsets: ["latin"],

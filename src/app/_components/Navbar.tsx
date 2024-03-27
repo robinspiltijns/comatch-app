@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import { AuthContext } from "@/lib/AuthProvider";
+import { AuthContext } from "@/lib/providers/AuthProvider";
 import { usePathname } from "next/navigation";
-import { auth } from "@/lib/firebase";
+import { auth } from "@/lib/firebase/firebase";
 
 export default function Navbar() {
   const authState = useContext(AuthContext);

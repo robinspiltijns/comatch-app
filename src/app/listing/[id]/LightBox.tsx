@@ -4,7 +4,7 @@ import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 
-import image2 from "../../public/house.jpeg";
+import image2 from "../../../../public/house.jpeg";
 import { useState } from "react";
 // ...
 

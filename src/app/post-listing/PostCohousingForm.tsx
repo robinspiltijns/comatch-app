@@ -1,7 +1,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { uploadImage, uploadListingSummary } from "@/lib/firebase";
 import { Timestamp } from "@firebase/firestore";
 import {
   Form,
@@ -10,8 +9,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { Input } from "./ui/input";
+} from "../_components/ui/form";
+import { Input } from "../_components/ui/input";
 import {
   Select,
   SelectContent,
@@ -19,13 +18,19 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+} from "../_components/ui/select";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "../_components/ui/popover";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
-import { Calendar } from "./ui/calendar";
+import { Calendar } from "../_components/ui/calendar";
 import { nlBE } from "date-fns/locale";
-import { Button } from "./ui/button";
+import { Button } from "../_components/ui/button";
+import { uploadThumbnail } from "@/lib/firebase/storage";
+import { uploadListingSummary } from "@/lib/firebase/firestore/queries";
 
 const cohousingFormSchema = z.object({
   title: z.string().min(1, "Geef een titel in."),
@@ -70,14 +75,23 @@ export default function PostCohousingForm() {
     cohousingFormPayload
   ) => {
     const listingId = crypto.randomUUID();
-    const downloadURL = await uploadImage(cohousingFormPayload.picture![0]);
+    const uploadImageResult = await uploadThumbnail(
+      listingId,
+      cohousingFormPayload.picture![0]
+    );
+
+    if (!uploadImageResult.isSuccess) {
+      console.error("Something went wrong in uploading thumbnail.");
+      return;
+    }
+
     await uploadListingSummary({
       title: cohousingFormPayload.title,
       domicile: cohousingFormPayload.domicile,
       price: cohousingFormPayload.price,
       amountOfCohousers: cohousingFormPayload.amountOfCohousers,
       listingId,
-      thumbnail: downloadURL,
+      thumbnail: uploadImageResult.value,
       moveInDate: Timestamp.fromDate(cohousingFormPayload.moveIndate),
       creationDate: Timestamp.fromDate(new Date()),
       ageRange: [1, 3],

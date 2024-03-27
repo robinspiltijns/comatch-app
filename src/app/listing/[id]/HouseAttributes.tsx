@@ -33,7 +33,7 @@ import {
 } from "react-icons/md";
 import AttributeBadge, { AttributeBadgeProps } from "./AttributeBadge";
 import { useState } from "react";
-import { HouseAttributesType } from "@/lib/schema";
+import { HouseAttributesType } from "@/lib/firebase/firestore/schema";
 
 type HouseAttributeCategory = "ROOM" | "COMMON_SPACE" | "AMENITIES";
 

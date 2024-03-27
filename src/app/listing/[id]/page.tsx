@@ -1,20 +1,14 @@
-import HouseAttributes from "@/components/HouseAttributes";
-import { docToListing } from "@/lib/schema";
-import { getDoc, doc } from "firebase/firestore";
+import HouseAttributes from "@/app/listing/[id]/HouseAttributes";
+import { doc } from "firebase/firestore";
 import Image from "next/image";
-import { db } from "@/lib/firebase";
-import PeopleAttributes from "@/components/PeopleAttributes";
-import LightBox from "@/components/LightBox";
+import PeopleAttributes from "@/app/listing/[id]/PeopleAttributes";
+import LightBox from "@/app/listing/[id]/LightBox";
+import { getListing } from "@/lib/firebase/firestore/queries";
 
 async function Listing({ params }: { params: { id: string } }) {
-  const before = Date.now();
-  const document = (await getDoc(doc(db, "listings", params.id))).data();
-  const after = Date.now();
-  console.log("firebase query: " + (after - before));
-  const parsedDoc = docToListing.safeParse(document);
-
-  if (parsedDoc.success) {
-    const listing = parsedDoc.data;
+  const listingResult = await getListing(params.id);
+  if (listingResult.isSuccess) {
+    const listing = listingResult.value;
     return (
       <div>
         <div className="relative h-72">
@@ -61,11 +55,7 @@ async function Listing({ params }: { params: { id: string } }) {
       </div>
     );
   } else {
-    console.error(
-      `Failed to parse document\n${JSON.stringify(
-        doc
-      )}.\nError: ${JSON.stringify(parsedDoc.error)}}\n`
-    );
+    console.error(listingResult.error);
   }
 }
 

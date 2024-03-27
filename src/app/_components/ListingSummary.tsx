@@ -1,4 +1,4 @@
-import { ListingSummary } from "@/lib/schema";
+import { ListingSummary } from "@/lib/firebase/firestore/schema";
 import Image from "next/image";
 import Link from "next/link";
 

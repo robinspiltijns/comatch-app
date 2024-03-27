@@ -3,7 +3,7 @@
 import { ReactNode, createContext, useContext } from "react";
 import { User } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { auth } from "./firebase";
+import { auth } from "../firebase/firebase";
 
 type AuthLoading = {
   type: "LOADING";

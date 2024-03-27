@@ -1,4 +1,4 @@
-import { PeopleAttributes } from "@/lib/schema";
+import { PeopleAttributes } from "@/lib/firebase/firestore/schema";
 import { IconType } from "react-icons";
 import {
   LuUsers,
