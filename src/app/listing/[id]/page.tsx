@@ -1,5 +1,4 @@
 import HouseAttributes from "@/app/listing/[id]/HouseAttributes";
-import { doc } from "firebase/firestore";
 import Image from "next/image";
 import PeopleAttributes from "@/app/listing/[id]/PeopleAttributes";
 import LightBox from "@/app/listing/[id]/LightBox";

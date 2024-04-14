@@ -1,8 +1,9 @@
 import { ListingSummary } from "@/lib/firebase/firestore/schema";
+import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 
-function ListingSummary(props: ListingSummary) {
+function ShortListing(props: ListingSummary) {
   return (
     <Link href={`/listing/${props.listingId}`}>
       <div className=" bg-white border-2 rounded-xl p-4">
@@ -18,7 +19,7 @@ function ListingSummary(props: ListingSummary) {
           {props.title}
         </div>
         <div className="grid grid-cols-2 items gap-x-5 gap-y-2 mb-3">
-          <div>Inhuisdatum: {props.moveInDate.toLocaleDateString()}</div>
+          <div>Vanaf: {format(props.moveInDate, "dd/MM/yyyy")}</div>
           <div>Domicilie: {props.domicile ? "Ja" : "Nee"}</div>
           <div>Aantal cohousers: {props.amountOfCohousers}</div>
           <div>Leeftijden: {`${props.ageRange[0]} - ${props.ageRange[1]}`}</div>
@@ -29,4 +30,4 @@ function ListingSummary(props: ListingSummary) {
   );
 }
 
-export default ListingSummary;
+export default ShortListing;

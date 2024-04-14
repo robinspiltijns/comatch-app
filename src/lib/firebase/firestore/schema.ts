@@ -69,7 +69,6 @@ export const docToListing = z
     imageUrl: z.string(),
     moveInDate: z.instanceof(Timestamp),
     domicile: z.boolean(),
-    amountOfCohousers: z.number().int(),
     ageRange: z.tuple([z.number().int(), z.number().int()]),
     price: z.number(),
     city: z.string(),

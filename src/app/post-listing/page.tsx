@@ -21,8 +21,13 @@ export default function PostListing() {
       break;
     case "UNAUTHENTICATED":
       body = (
-        <div className="flex flex-row justify-center">
-          <Authenticate />
+        <div>
+          <p className="mb-5">
+            Log in of registreer om een zoekertje te plaatsen.
+          </p>
+          <div className="flex flex-row justify-center">
+            <Authenticate />
+          </div>
         </div>
       );
       break;
@@ -34,11 +39,10 @@ export default function PostListing() {
   }
 
   return (
-    <div>
-      <h2 className="font-mono text-2xl py-3 px-5 lg:px-20 border-b-2 border-dotted">
-        Zoekertje plaatsen
-      </h2>
-      <div className="p-5 lg:px-20">{body}</div>
+    <div className="p-5 lg:px-20">
+      <h1 className="mb-2">Zoekertje plaatsen</h1>
+
+      <div>{body}</div>
     </div>
   );
 }

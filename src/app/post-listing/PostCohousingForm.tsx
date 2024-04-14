@@ -31,6 +31,7 @@ import { nlBE } from "date-fns/locale";
 import { Button } from "../_components/ui/button";
 import { uploadThumbnail } from "@/lib/firebase/storage";
 import { uploadListingSummary } from "@/lib/firebase/firestore/queries";
+import { Textarea } from "@/components/ui/textarea";
 
 const cohousingFormSchema = z.object({
   title: z.string().min(1, "Geef een titel in."),
@@ -119,23 +120,6 @@ export default function PostCohousingForm() {
                 <FormMessage>
                   {form.formState.errors.title && (
                     <p>{form.formState.errors.title.message}</p>
-                  )}
-                </FormMessage>
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Bescrhijving</FormLabel>
-                <FormControl>
-                  <Input placeholder="Bescrhijving" {...field} />
-                </FormControl>
-                <FormMessage>
-                  {form.formState.errors.description && (
-                    <p>{form.formState.errors.description.message}</p>
                   )}
                 </FormMessage>
               </FormItem>
@@ -267,6 +251,23 @@ export default function PostCohousingForm() {
                 <FormControl>
                   <Input type="file" accept=",jpg, .jpeg, .png" {...fileRef} />
                 </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Bescrhijving</FormLabel>
+                <FormControl>
+                  <Textarea placeholder="Bescrhijving" {...field} />
+                </FormControl>
+                <FormMessage>
+                  {form.formState.errors.description && (
+                    <p>{form.formState.errors.description.message}</p>
+                  )}
+                </FormMessage>
               </FormItem>
             )}
           />

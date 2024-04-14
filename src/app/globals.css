@@ -7,3 +7,7 @@
     @apply font-sans;
   }
 }
+
+h1 {
+  @apply font-mono text-2xl;
+}
